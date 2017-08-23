@@ -1,0 +1,19 @@
+{
+  "name": "amk-wrap",
+  "version": "0.1.0",
+  "description": "wrapper to catch error in express.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amkjs/amk-wrap.git"
+  },
+  "author": "heinrich10",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amkjs/amk-wrap/issues"
+  },
+  "homepage": "https://github.com/amkjs/amk-wrap#readme"
+}
