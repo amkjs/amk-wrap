@@ -4,6 +4,8 @@ function wrapper to catch errors in [express](https://expressjs.com/) controller
 
 ## Usage
 
+to install: `npm i amk-wrap`
+
 on the router file:
 ```
 const express = require('express');
@@ -39,3 +41,10 @@ app.get('/', wrap((req, res) => {
 ## Tests
 1. install dependencies using `npm install`
 2. run `npm test`
+
+## Feedback
+
+All bugs, feature requests, pull requests, feedback, etc., are welcome. [Create an issue](https://github.com/amkjs/amk-wrap/issues).
+
+## License
+[MIT](https://github.com/amkjs/amk-wrap/blob/master/LICENSE)
