@@ -1,6 +1,14 @@
 module.exports = {
-	extends: 'amk',
-	env: {
-		mocha: true
-	}
+  extends: 'eslint:recommended',
+  parserOptions: {
+    ecmaVersion: '2023',
+    sourceType: 'commonjs'
+  },
+  env: {
+    mocha: true,
+    node: true,
+  },
+  rules: {
+    semi: 1,
+  }
 };

@@ -18,12 +18,12 @@
     "url": "https://github.com/amkjs/amk-wrap/issues"
   },
   "homepage": "https://github.com/amkjs/amk-wrap#readme",
+  "type": "commonjs",
   "devDependencies": {
-    "chai": "^4.1.2",
-    "codecov": "^3.1.0",
-    "eslint": "^5.5.0",
-    "eslint-config-amk": "^0.1.0",
-    "mocha": "^5.2.0",
-    "nyc": "^13.0.1"
+    "chai": "^5.1.0",
+    "codecov": "^3.8.3",
+    "eslint": "^8.57.0",
+    "mocha": "^10.3.0",
+    "nyc": "^15.1.0"
   }
 }
