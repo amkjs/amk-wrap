@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "nyc mocha",
-    "codecov": "codecov"
+    "codecov": "codecov --disable=gcov"
   },
   "repository": {
     "type": "git",

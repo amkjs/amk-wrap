@@ -1,7 +1,7 @@
 # AMK-WRAP
 
-[![CircleCI](https://circleci.com/gh/amkjs/amk-wrap.svg?style=svg)](https://circleci.com/gh/amkjs/amk-wrap)
-[![codecov](https://codecov.io/gh/amkjs/amk-wrap/branch/master/graph/badge.svg)](https://codecov.io/gh/amkjs/amk-wrap)
+[![Github Actions](https://github.com/amkjs/amk-wrap/actions/workflows/node.js.yml/badge.svg)](https://github.com/amkjs/amk-wrap/actions/workflows/node.js.yml)
+[![codecov](https://codecov.io/github/amkjs/amk-wrap/graph/badge.svg?token=bgxufudUco)](https://codecov.io/github/amkjs/amk-wrap)
 [![Known Vulnerabilities](https://snyk.io/test/github/amkjs/amk-wrap/badge.svg?targetFile=package.json)](https://snyk.io/test/github/amkjs/amk-wrap?targetFile=package.json)
 
 function wrapper to catch errors in [express](https://expressjs.com/) controllers
