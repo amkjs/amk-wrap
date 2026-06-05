@@ -33,12 +33,7 @@ jobs:
       - name: Run Test
         run: npm test
       - name: Upload coverage to Codecov
-<<<<<<< Updated upstream
-        if: matrix.node-version == '20.x'
-        run: npm run codecov
-=======
         if: matrix.node-version == '24.x'
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         with:
           fail_ci_if_error: false
->>>>>>> Stashed changes
