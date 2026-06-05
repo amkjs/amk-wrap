@@ -10,10 +10,12 @@ function wrapper to catch errors in [express](https://expressjs.com/) controller
 
 to install: `npm i amk-wrap`
 
-can pass a function or a class method.
+can pass a function or a class method. Supports both CommonJS (`require`) and ESM (`import`).
+
+### CommonJS
 
 on the router file:
-```
+```js
 const express = require('express');
 const router = express.Router();
 const wrap = require('amk-wrap');
@@ -32,11 +34,10 @@ module.exports = function (controller) {
   router.get('/', wrap(controller, 'get')); // pass a class method
   return router;
 }
-
 ```
 
 on the index.js:
-```
+```js
 const wrap = require('amk-wrap');
 
 // some other code
@@ -44,8 +45,28 @@ const wrap = require('amk-wrap');
 app.get('/', wrap(getFunction)); // pass a function
 ```
 or
-```
+```js
 const wrap = require('amk-wrap');
+
+// some other code
+
+app.get('/', wrap((req, res) => {
+	res.send('hello world');
+}));
+```
+
+### ESM
+
+```js
+import wrap from 'amk-wrap';
+
+// some other code
+
+app.get('/', wrap(getFunction)); // pass a function
+```
+or
+```js
+import wrap from 'amk-wrap';
 
 // some other code
 
