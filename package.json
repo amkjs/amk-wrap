@@ -1,11 +1,20 @@
 {
   "name": "amk-wrap",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "function wrapper to catch errors in express.js controllers",
   "main": "index.js",
+  "exports": {
+    ".": {
+      "require": "./index.js",
+      "import": "./index.mjs",
+      "default": "./index.js"
+    },
+    "./lib/wrapper": "./lib/wrapper.js",
+    "./package.json": "./package.json"
+  },
   "scripts": {
     "lint": "eslint .",
-    "test": "c8 node --test test/index.js"
+    "test": "node --test"
   },
   "repository": {
     "type": "git",
