@@ -2,7 +2,6 @@
 
 [![Github Actions](https://github.com/amkjs/amk-wrap/actions/workflows/node.js.yml/badge.svg)](https://github.com/amkjs/amk-wrap/actions/workflows/node.js.yml)
 [![codecov](https://codecov.io/github/amkjs/amk-wrap/graph/badge.svg?token=bgxufudUco)](https://codecov.io/github/amkjs/amk-wrap)
-[![Known Vulnerabilities](https://snyk.io/test/github/amkjs/amk-wrap/badge.svg?targetFile=package.json)](https://snyk.io/test/github/amkjs/amk-wrap?targetFile=package.json)
 
 function wrapper to catch errors in [express](https://expressjs.com/) controllers
 
@@ -11,6 +10,8 @@ function wrapper to catch errors in [express](https://expressjs.com/) controller
 to install: `npm i amk-wrap`
 
 can pass a function or a class method. Supports both CommonJS (`require`) and ESM (`import`).
+
+**The wrapped function must return a `Promise`** (e.g., be `async` or return a Promise manually). Non-Promise return values will be rejected with a `TypeError`.
 
 ### CommonJS
 
@@ -50,7 +51,7 @@ const wrap = require('amk-wrap');
 
 // some other code
 
-app.get('/', wrap((req, res) => {
+app.get('/', wrap(async (req, res) => {
 	res.send('hello world');
 }));
 ```
@@ -70,8 +71,21 @@ import wrap from 'amk-wrap';
 
 // some other code
 
-app.get('/', wrap((req, res) => {
+app.get('/', wrap(async (req, res) => {
 	res.send('hello world');
+}));
+```
+
+### TypeScript
+
+`amk-wrap` ships with first-party type declarations. No additional `@types/` package is required.
+
+```ts
+import wrap from 'amk-wrap';
+import { Request, Response } from 'express';
+
+app.get('/', wrap(async (req: Request, res: Response) => {
+  res.send('hello world');
 }));
 ```
 
