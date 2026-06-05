@@ -84,6 +84,15 @@ describe('Wrapper function', () => {
     expect(err.message).toBe('Invalid arguments');
   });
 
+  it('Should catch synchronous throws from a wrapped function', async () => {
+    const fn = wrap(() => {
+      throw new Error('sync error');
+    });
+    const err = await new Promise((resolve) => fn(null, null, resolve));
+    expect(err).toBeInstanceOf(Error);
+    expect(err.message).toBe('sync error');
+  });
+
   it('Should expose the wrapper via a CJS subpath import', () => {
     const wrapper = require('amk-wrap/lib/wrapper');
     expect(typeof wrapper).toBe('function');
