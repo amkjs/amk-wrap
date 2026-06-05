@@ -83,4 +83,19 @@ describe('Wrapper function', () => {
     expect(err).toBeInstanceOf(TypeError);
     expect(err.message).toBe('Invalid arguments');
   });
+
+  it('Should expose the wrapper via a CJS subpath import', () => {
+    const wrapper = require('amk-wrap/lib/wrapper');
+    expect(typeof wrapper).toBe('function');
+  });
+
+  it('Should expose package.json via a CJS subpath import', () => {
+    const pkg = require('amk-wrap/package.json');
+    expect(pkg.name).toBe('amk-wrap');
+  });
+
+  it('Should support ESM default import from index.mjs', async () => {
+    const { default: wrapESM } = await import('../index.mjs');
+    expect(typeof wrapESM).toBe('function');
+  });
 });
