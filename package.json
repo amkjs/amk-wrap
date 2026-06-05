@@ -19,10 +19,10 @@
   "homepage": "https://github.com/amkjs/amk-wrap#readme",
   "type": "commonjs",
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "c8": "^10.1.3",
-    "eslint": "^10.4.1",
-    "expect": "^29.7.0",
-    "globals": "^17.6.0"
+    "@eslint/js": "~10.0.1",
+    "c8": "~11.0.0",
+    "eslint": "~10.4.1",
+    "expect": "~30.4.1",
+    "globals": "~17.6.0"
   }
 }
