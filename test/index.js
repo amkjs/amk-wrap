@@ -1,23 +1,10 @@
+const { describe, it } = require('node:test');
+const { expect } = require('expect');
 const wrap = require('../index');
 
-const handleAssertError = (done, fn) => {
-  try {
-    fn();
-    done();
-  } catch (err) {
-    done(err);
-  }
-};
-
-describe('Wrapper function', async () => {
-  let expect;
-  // temporarily use this to import chai
-  before(async () => {
-    const chai = await import('chai');
-    expect = chai.expect;
-  });
-  it('Should wrap the class method with the context, then execute normally', (done) => {
-    const newValue= 2;
+describe('Wrapper function', () => {
+  it('Should wrap the class method with the context, then execute normally', async () => {
+    const newValue = 2;
     class TestClass {
       constructor() {
         this.value = newValue;
@@ -31,17 +18,15 @@ describe('Wrapper function', async () => {
 
     const testClass = new TestClass();
     const fn = wrap(testClass, 'setValue');
-    let res = {value: 0};
-    let req = {value: 0};
-    fn(req, res, (err) => {
-      handleAssertError(done, () => {
-        expect(err).to.be.undefined;
-        expect(req.value).to.be.equal(newValue);
-        expect(res.value).to.be.equal(newValue);
-      });
-    });
+    const res = { value: 0 };
+    const req = { value: 0 };
+    const err = await new Promise((resolve) => fn(req, res, resolve));
+    expect(err).toBeUndefined();
+    expect(req.value).toBe(newValue);
+    expect(res.value).toBe(newValue);
   });
-  it('Should catch the error when the class method throws an error', (done) => {
+
+  it('Should catch the error when the class method throws an error', async () => {
     class TestClass {
       async setValue() {
         throw new Error();
@@ -49,15 +34,13 @@ describe('Wrapper function', async () => {
     }
 
     const fn = wrap(new TestClass(), 'setValue');
-    fn(null, null, (err) => {
-      handleAssertError(done, () => {
-        expect(err).to.be.instanceOf(Error);
-      });
-    });
+    const err = await new Promise((resolve) => fn(null, null, resolve));
+    expect(err).toBeInstanceOf(Error);
   });
-  it('Should also wrap a function',  (done) => {
-    const req = {value: 0};
-    const res = {value: 0};
+
+  it('Should also wrap a function', async () => {
+    const req = { value: 0 };
+    const res = { value: 0 };
     const newValue = 5;
     const someFunction = async () => {
       req.value = newValue;
@@ -65,50 +48,39 @@ describe('Wrapper function', async () => {
     };
 
     const fn = wrap(someFunction);
-    fn(req, res, (err) => {
-      handleAssertError(done, () => {
-        expect(err).to.be.undefined;
-        expect(req.value).to.be.equal(newValue);
-        expect(res.value).to.be.equal(newValue);
-      });
-    });
+    const err = await new Promise((resolve) => fn(req, res, resolve));
+    expect(err).toBeUndefined();
+    expect(req.value).toBe(newValue);
+    expect(res.value).toBe(newValue);
   });
-  it('Should throw an error when input is not a Promise/Async function', (done) => {
+
+  it('Should throw an error when input is not a Promise/Async function', async () => {
     const fn = wrap(() => {});
-    fn(null, null, (err) => {
-      handleAssertError(done, () => {
-        expect(err).to.be.instanceOf(TypeError);
-      });
-    });
+    const err = await new Promise((resolve) => fn(null, null, resolve));
+    expect(err).toBeInstanceOf(TypeError);
   });
-  it('Should throw an error when class method is not a Promise/Async function', (done) => {
+
+  it('Should throw an error when class method is not a Promise/Async function', async () => {
     class TestClass {
       notAPromise() {}
     }
     const testClass = new TestClass();
     const fn = wrap(testClass, 'notAPromise');
-    fn(null, null, (err) => {
-      handleAssertError(done, () => {
-        expect(err).to.be.instanceOf(TypeError);
-      });
-    });
+    const err = await new Promise((resolve) => fn(null, null, resolve));
+    expect(err).toBeInstanceOf(TypeError);
   });
-  it('Should throw an error if there are more the 2 arguments', (done) => {
+
+  it('Should throw an error if there are more the 2 arguments', async () => {
     const fn = wrap(() => {}, () => {}, () => {});
-    fn(null, null, (err) => {
-      handleAssertError(done, () => {
-        expect(err).to.be.instanceOf(TypeError);
-        expect(err.message).to.be.equal('Invalid arguments');
-      });
-    });
+    const err = await new Promise((resolve) => fn(null, null, resolve));
+    expect(err).toBeInstanceOf(TypeError);
+    expect(err.message).toBe('Invalid arguments');
   });
-  it('Should throw an error if there are no arguments', (done) => {
+
+  it('Should throw an error if there are no arguments', async () => {
     const fn = wrap();
-    fn(null, null, (err) => {
-      handleAssertError(done, () => {
-        expect(err).to.be.instanceOf(TypeError);
-        expect(err.message).to.be.equal('Invalid arguments');
-      });
-    });
+    const err = await new Promise((resolve) => fn(null, null, resolve));
+    expect(err).toBeInstanceOf(TypeError);
+    expect(err.message).toBe('Invalid arguments');
   });
 });

@@ -34,4 +34,6 @@ jobs:
         run: npm test
       - name: Upload coverage to Codecov
         if: matrix.node-version == '20.x'
-        run: npm run codecov
+        uses: codecov/codecov-action@v5
+        with:
+          fail_ci_if_error: false
