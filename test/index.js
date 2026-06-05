@@ -111,4 +111,15 @@ describe('Wrapper function', async () => {
       });
     });
   });
+  it('Should catch synchronous throws from a wrapped function', (done) => {
+    const fn = wrap(() => {
+      throw new Error('sync error');
+    });
+    fn(null, null, (err) => {
+      handleAssertError(done, () => {
+        expect(err).to.be.instanceOf(Error);
+        expect(err.message).to.be.equal('sync error');
+      });
+    });
+  });
 });
