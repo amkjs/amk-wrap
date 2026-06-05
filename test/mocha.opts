@@ -1,3 +1,0 @@
-test/**/*.js
---reporter spec
---check-leaks
