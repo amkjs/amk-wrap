@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "nyc mocha",
-    "codecov": "codecov --disable=gcov"
+    "test": "nyc mocha"
   },
   "repository": {
     "type": "git",
@@ -21,7 +20,6 @@
   "type": "commonjs",
   "devDependencies": {
     "chai": "^5.1.0",
-    "codecov": "^3.8.3",
     "eslint": "^8.57.0",
     "mocha": "^10.3.0",
     "nyc": "^15.1.0"
