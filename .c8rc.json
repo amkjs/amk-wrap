@@ -3,5 +3,9 @@
     "lcov",
     "text-summary"
   ],
-  "cache": true
+  "all": true,
+  "include": [
+    "index.js",
+    "lib/**"
+  ]
 }

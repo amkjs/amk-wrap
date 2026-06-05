@@ -70,7 +70,7 @@ describe('Wrapper function', () => {
     expect(err).toBeInstanceOf(TypeError);
   });
 
-  it('Should throw an error if there are more the 2 arguments', async () => {
+  it('Should throw an error if there are more than 2 arguments', async () => {
     const fn = wrap(() => {}, () => {}, () => {});
     const err = await new Promise((resolve) => fn(null, null, resolve));
     expect(err).toBeInstanceOf(TypeError);
