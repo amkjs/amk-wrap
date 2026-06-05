@@ -6,8 +6,11 @@
   "exports": {
     ".": {
       "require": "./index.js",
-      "import": "./index.mjs"
-    }
+      "import": "./index.mjs",
+      "default": "./index.js"
+    },
+    "./lib/wrapper": "./lib/wrapper.js",
+    "./package.json": "./package.json"
   },
   "scripts": {
     "lint": "eslint .",
